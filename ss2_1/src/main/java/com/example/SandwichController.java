@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
-public class Controller {
+public class SandwichController {
     @PostMapping("/save")
     public String findWord(@RequestParam(value = "val1", required = false) String val1,@RequestParam(value = "val2", required = false) String val2,
                            @RequestParam(value = "val3", required = false) String val3,@RequestParam(value = "val4", required = false) String val4, Model model) {
