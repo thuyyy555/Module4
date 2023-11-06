@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
 @org.springframework.stereotype.Controller
-public class Controller {
+public class DictionaryController {
     String[] array1 = {"dog", "cat", "rabbit"};
     String[] array2 = {"chó", "mèo", "thỏ"};
     @PostMapping("/change")

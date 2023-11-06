@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @org.springframework.stereotype.Controller
 @RequestMapping()
-public class Controller {
-    @PostMapping("/vnd")
-    public String greeting(@RequestParam int gia,  int usd, Model model) {
-        int result = usd * gia;
+public class CurrencyController {
+    @PostMapping("/convert")
+    public String convert(@RequestParam int exchangeRate,  @RequestParam int usd, Model model) {
+        int result = usd * exchangeRate;
         model.addAttribute("result", result);
         return "index";
     }
-    @GetMapping(value = "/vnd")
+    @GetMapping(value = "/convert")
     public String showForm(Model model){
         return"index";
     }
