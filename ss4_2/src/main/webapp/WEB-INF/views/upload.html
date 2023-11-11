@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+  <a th:href="@{/song}">Back</a>
+</p>
+<div id="form">
+  <form th:action="@{/song/save}" th:object="${songForm}"
+        method="POST" novalidate="novalidate" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id}"/>
+    <div>
+      <label>Name Song</label>
+      <input type="text" required th:field="*{nameSong}"/>
+    </div>
+    <div>
+      <label>Composer</label>
+      <input type="text" required th:field="*{composer}"/>
+    </div>
+    <div>
+      <label>Music Genre</label>
+      <input type="text" required th:field="*{musicGenre}"/>
+    </div>
+    <div>
+      <label>File Path</label>
+      <input type="file" accept=".mp3,.wav,.ogg,.m4p" required th:field="*{filePath}"/>
+    </div>
+    <input type="submit" value="Save"/>
+  </form>
+</div>
+</body>
+</html>
