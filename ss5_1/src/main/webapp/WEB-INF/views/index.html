@@ -33,7 +33,7 @@
         };
         request.send();
     </script>
-    <input type="text" th:field="*{picture.idPicture}">
+    <input type="text" th:field="${feedback.picture.idPicture}" th:value="${picture.idPicture}" />
     <br>
     <div class="main">
     <div class="mb-3">

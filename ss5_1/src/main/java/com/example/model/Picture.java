@@ -24,6 +24,11 @@ public class Picture {
         this.today = LocalDate.now();
     }
 
+    public Picture(int idPicture, LocalDate today) {
+        this.idPicture = idPicture;
+        this.today = today;
+    }
+
     public int getIdPicture() {
         return idPicture;
     }
