@@ -20,10 +20,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/picture")
 public class PictureController {
-//    @Autowired
-//    private IPictureRepository pictureRepository;
-//    @Autowired
-//    private IFeedbackRepository feedbackRepository;
     @Autowired
     private IPictureService pictureService;
     @Autowired

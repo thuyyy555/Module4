@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <title>Show List</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        button:hover a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<button class="btn btn-danger" type="button">
+    <a th:href="@{/blog/create}">
+        Add new blog
+    </a>
+</button>
+<table class="table table-borderless table-hover" id="blogList">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${#lists.isEmpty(blogList)}">
+        <td colspan="3">No blogs available</td>
+    </tr>
+    <tr th:each="blog: ${blogList}" th:object="${blog}">
+        <td th:text="${blog.getIdBlog()}"></td>
+        <td th:text="${blog.getTitle()}"></td>
+        <td th:text="${blog.getContent()}"></td>
+        <td>
+            <button type="button" class="btn btn-primary">
+                <a th:href="@{/blog/update(id=*{idBlog})}">Update</a>
+            </button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    th:data-id="${blog.idBlog}" onclick="passIdToModal(this)">
+                Delete
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<form method="get" th:action="@{/blog/delete}">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có xác nhận muốn xóa ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+                <input type="hidden" id="modalIdInput" name="id">
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function passIdToModal(element) {
+        var id = element.getAttribute("data-id");
+        document.getElementById('modalIdInput').value = id;
+    }
+</script>
+<script crossorigin="anonymous"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
