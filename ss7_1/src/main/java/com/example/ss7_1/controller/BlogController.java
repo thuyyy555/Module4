@@ -33,7 +33,7 @@ public class BlogController {
         model.addAttribute("list", categoryService.findAll());
         return "blog/list_category";
     }
-    
+
     @GetMapping("/list_blog/{id}")
     public String showListDetail(Model model, @PathVariable("id") int id) {
         model.addAttribute("list", blogService.findAllByCategory_CategoryId(id));
