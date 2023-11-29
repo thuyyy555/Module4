@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List Category</title>
+</head>
+<body>
+<a th:href="@{/blog/create_cate}">Create new category</a>
+<br>
+<a th:href="@{/blog/create}">Create new blog</a>
+<br>
+<a th:href="@{/blog/list_paging}">List all blogs</a>
+<form th:action="@{/blog/search_cate}" method="get">
+  <label for="name">Title</label>
+  <input type="text" id="name" name="category_name" />
+  <br/>
+  <input type="submit" value="Search" />
+</form>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Category name</th>
+    <th>List blog</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+  <tr th:each="p: ${list}" th:object="${p}">
+    <td th:text="*{categoryId}"></td>
+    <td th:text="*{categoryName}"></td>
+    <td>
+      <a th:href="@{/blog/list_blog/{id}(id=*{categoryId})}">Show list</a>
+    </td>
+    <td>
+      <a th:href="@{/blog/update_cate(id=*{categoryId})}">Update</a>
+    </td>
+    <td>
+      <a th:href="@{/blog/delete_cate/{id}(id=*{categoryId})}">Delete</a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
