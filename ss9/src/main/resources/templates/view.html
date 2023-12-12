@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List books</title>
+</head>
+<body>
+<form th:action="@{/book/return}" method="get">
+    <label for="idBorrow">IDBorrow</label>
+    <input type="text" id="idBorrow" name="idBorrow" />
+    <br/>
+    <input type="submit" value="OK" />
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Detail</th>
+    </tr>
+    <tr th:each="p: ${list}" th:object="${p}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{title}"></td>
+        <td th:text="*{quantity}"></td>
+        <td>
+            <a th:href="@{/book/detail/{id}(id=*{id})}">Detail</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

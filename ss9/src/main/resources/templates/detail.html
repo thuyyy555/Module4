@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Detail product</title>
+</head>
+<body>
+<form th:action="@{/book/borrow}" method="post" th:object="${book}">
+<table>
+  <tr>
+    <td>ID:</td>
+    <td th:text="*{id}"></td>
+    <input type="hidden" th:name="id" th:value="${id}" />
+  </tr>
+  <tr>
+    <td>IDBorrow:</td>
+    <td th:text="${idBorrow}"></td>
+    <input type="hidden" th:name="idBorrow" th:value="${idBorrow}" />
+  </tr>
+  <tr>
+    <td>Title:</td>
+    <td th:text="*{title}"></td>
+  </tr>
+  <tr>
+    <td>Quantity:</td>
+    <td th:text="*{quantity}"></td>
+  </tr>
+  <tr>
+    <td><input type="submit" value="Borrow"></td>
+  </tr>
+</table>
+</form>
+<a th:text="|Back to list|" th:href="@{/book/list}"></a>
+</body>
+</html>
