@@ -3,8 +3,6 @@ package com.example.ltm.controller;
 import com.example.ltm.model.bean.ConvertedFile;
 import com.example.ltm.model.bo.FileBO;
 import com.example.ltm.model.bo.IFileBO;
-import com.example.ltm.model.dao.FileDAO;
-import com.example.ltm.model.dao.IFileDAO;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -25,7 +23,7 @@ import java.util.List;
 @WebServlet(name = "fileServlet", value = "")
 @MultipartConfig
 public class FileServlet extends HttpServlet {
-    private IFileDAO iFileDAO = new FileDAO();
+    private IFileBO iFile = new FileBO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,7 +48,7 @@ public class FileServlet extends HttpServlet {
     }
 
     private void displayFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<ConvertedFile> list = this.iFileDAO.displayListFile();
+        List<ConvertedFile> list = this.iFile.displayListFile();
         request.setAttribute("list", list);
         request.getRequestDispatcher("list.jsp").forward(request, response);
     }
@@ -95,7 +93,7 @@ public class FileServlet extends HttpServlet {
         String date = request.getParameter("date");
         int id = Integer.parseInt(request.getParameter("idFile"));
         ConvertedFile convertedFile = new ConvertedFile(id, fileName, date);
-        iFileDAO.save(convertedFile);
+        iFile.save(convertedFile);
 
         if (filePart != null && filePart.getSize() > 0) {
             try (InputStream pdfFile = filePart.getInputStream();
@@ -123,8 +121,8 @@ public class FileServlet extends HttpServlet {
 
     private void delete(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        iFileDAO.delete(id);
-        List<ConvertedFile> list = iFileDAO.displayListFile();
+        iFile.delete(id);
+        List<ConvertedFile> list = iFile.displayListFile();
         request.setAttribute("list", list);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("list.jsp");
         try {
@@ -139,7 +137,7 @@ public class FileServlet extends HttpServlet {
 
     private void search(HttpServletRequest request, HttpServletResponse response) {
         String txtSearch = request.getParameter("txtSearch");
-        List<ConvertedFile> list = iFileDAO.search(txtSearch);
+        List<ConvertedFile> list = iFile.search(txtSearch);
         request.setAttribute("list", list);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("list.jsp");
         try {

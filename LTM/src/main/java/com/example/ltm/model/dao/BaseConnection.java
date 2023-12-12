@@ -1,4 +1,4 @@
-package com.example.ltm.model.bo;
+package com.example.ltm.model.dao;
 
 
 import java.sql.Connection;
