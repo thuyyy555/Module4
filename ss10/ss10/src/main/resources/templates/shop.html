@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <style>
+        .card {
+            display: inline-block;
+            width: 18rem;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <th:block th:each="product : ${products}">
+        <div class="col">
+            <a th:href="@{/detail/{id}(id=*{product.id})}">
+            <div class="card">
+                <img alt="Product Image" class="card-img-top" src="https://i.pinimg.com/736x/a0/48/0b/a0480b4049242b142e55a60cb19d8397.jpg">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <h5 class="card-title" th:text="${product.price}"></h5>
+                </div>
+            </div>
+            </a>
+        </div>
+    </th:block>
+</div>
+
+<script crossorigin="anonymous"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
